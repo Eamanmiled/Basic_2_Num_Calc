@@ -1,4 +1,4 @@
-import tkinter
+import tkinter, string
 
 
 def button_click(value):
@@ -7,6 +7,10 @@ def button_click(value):
 
 def clear_display():
     entry_display.delete(0, tkinter.END)
+
+
+def calculate():
+    print("this works")
 
 
 root = tkinter.Tk()
@@ -23,7 +27,7 @@ tkinter.Button(root, text="7", height=5, width=10, command=lambda: button_click(
 tkinter.Button(root, text="8", height=5, width=10, command=lambda: button_click("8")).grid(row=3, column=1, columnspan=1)
 tkinter.Button(root, text="9", height=5, width=10, command=lambda: button_click("9")).grid(row=3, column=2, columnspan=1)
 tkinter.Button(root, text="0", height=5, width=10, command=lambda: button_click("0")).grid(row=4, column=1, columnspan=1)
-tkinter.Button(root, text="calc", height=5, width=10).grid(row=4, column=2, columnspan=1)
+tkinter.Button(root, text="calc", height=5, width=10, command=lambda: calculate()).grid(row=4, column=2, columnspan=1)
 tkinter.Button(root, text="clear", height=5, width=10, command=clear_display).grid(row=4, column=0, columnspan=1)
 tkinter.Button(root, text="+", height=5, width=10, command=lambda: button_click("+")).grid(row=1, column=3, columnspan=1)
 tkinter.Button(root, text="-", height=5, width=10, command=lambda: button_click("-")).grid(row=2, column=3, columnspan=1)
