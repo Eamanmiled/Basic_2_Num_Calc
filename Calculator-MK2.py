@@ -19,7 +19,7 @@ def seperate():
     for char in content:
         if char.isdigit():
             individual += char
-        elif char in ["-", "+", "÷"]:
+        elif char in ["-", "+", "÷", "*"]:
             split.append(individual)
             individual = ""
             split.append(char)
@@ -31,6 +31,15 @@ def seperate():
         if i % 2 == 1:
             if split[i] == "+":
                 output += int(split[i - 1]) + int(split[i + 1])
+                i += 1
+            elif split[i] == "*":
+                output += int(split[i - 1]) * int(split[i + 1])
+                i += 1
+            elif split[i] == "-":
+                output += int(split[i - 1]) - int(split[i + 1])
+                i += 1
+            else:
+                output += int(split[i - 1]) // int(split[i + 1])
                 i += 1
         else:
             i += 1
@@ -57,5 +66,6 @@ tkinter.Button(root, text="clear", height=5, width=10, command=clear_display).gr
 tkinter.Button(root, text="+", height=5, width=10, command=lambda: button_click("+")).grid(row=1, column=3, columnspan=1)
 tkinter.Button(root, text="-", height=5, width=10, command=lambda: button_click("-")).grid(row=2, column=3, columnspan=1)
 tkinter.Button(root, text="÷", height=5, width=10, command=lambda: button_click("÷")).grid(row=3, column=3, columnspan=1)
+tkinter.Button(root, text="*", height=5, width=10, command=lambda: button_click("*")).grid(row=4, column=3, columnspan=1)
 
 root.mainloop()
