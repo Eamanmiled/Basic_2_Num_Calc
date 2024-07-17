@@ -1,4 +1,5 @@
-import tkinter, string
+import tkinter
+from tkinter import messagebox
 
 
 def button_click(value):
@@ -9,12 +10,36 @@ def clear_display():
     entry_display.delete(0, tkinter.END)
 
 
-def calculate():
-    print("this works")
+def seperate():
+    output = 0
+    split = []
+    individual = ""
+    content = entry_display.get()
+    print(content)
+    for char in content:
+        if char.isdigit():
+            individual += char
+        elif char in ["-", "+", "÷"]:
+            split.append(individual)
+            individual = ""
+            split.append(char)
+    split.append(individual)
+    clear_display()
+    print(split)
+    i = 0
+    while i < len(split):
+        if i % 2 == 1:
+            if split[i] == "+":
+                output += int(split[i - 1]) + int(split[i + 1])
+                i += 1
+        else:
+            i += 1
+    print(split)
+    button_click(output)
 
 
 root = tkinter.Tk()
-root.title("Basic 2 number Calculator")
+root.title("Calculator")
 entry_display = tkinter.Entry(root, width=16, font=('Arial', 24), borderwidth=2,)
 entry_display.grid(row=0, column=0, columnspan=4)
 tkinter.Button(root, text="1", height=5, width=10, command=lambda: button_click("1")).grid(row=1, column=0, columnspan=1)
@@ -27,7 +52,7 @@ tkinter.Button(root, text="7", height=5, width=10, command=lambda: button_click(
 tkinter.Button(root, text="8", height=5, width=10, command=lambda: button_click("8")).grid(row=3, column=1, columnspan=1)
 tkinter.Button(root, text="9", height=5, width=10, command=lambda: button_click("9")).grid(row=3, column=2, columnspan=1)
 tkinter.Button(root, text="0", height=5, width=10, command=lambda: button_click("0")).grid(row=4, column=1, columnspan=1)
-tkinter.Button(root, text="calc", height=5, width=10, command=lambda: calculate()).grid(row=4, column=2, columnspan=1)
+tkinter.Button(root, text="calc", height=5, width=10, command=lambda: seperate()).grid(row=4, column=2, columnspan=1)
 tkinter.Button(root, text="clear", height=5, width=10, command=clear_display).grid(row=4, column=0, columnspan=1)
 tkinter.Button(root, text="+", height=5, width=10, command=lambda: button_click("+")).grid(row=1, column=3, columnspan=1)
 tkinter.Button(root, text="-", height=5, width=10, command=lambda: button_click("-")).grid(row=2, column=3, columnspan=1)
