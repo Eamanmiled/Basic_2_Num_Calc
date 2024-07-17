@@ -1,5 +1,4 @@
 import tkinter
-from tkinter import messagebox
 
 
 def button_click(value):
@@ -25,25 +24,24 @@ def seperate():
             split.append(char)
     split.append(individual)
     clear_display()
-    print(split)
-    i = 0
+    i = 1
     while i < len(split):
         if i % 2 == 1:
             if split[i] == "+":
-                output += int(split[i - 1]) + int(split[i + 1])
+                output = int(split[i - 1]) + int(split[i + 1])
                 i += 1
             elif split[i] == "*":
-                output += int(split[i - 1]) * int(split[i + 1])
+                output = int(split[i - 1]) * int(split[i + 1])
                 i += 1
             elif split[i] == "-":
-                output += int(split[i - 1]) - int(split[i + 1])
+                output = int(split[i - 1]) - int(split[i + 1])
                 i += 1
             else:
-                output += int(split[i - 1]) // int(split[i + 1])
+                output = int(split[i - 1]) // int(split[i + 1])
                 i += 1
         else:
+            split[i] = str(output)
             i += 1
-    print(split)
     button_click(output)
 
 
